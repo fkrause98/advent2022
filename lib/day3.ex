@@ -17,7 +17,7 @@ defmodule Advent2022.Day3 do
   def solve_part_2_test do
     Advent2022.Input.get(:day3, :test)
     |> Enum.chunk_every(3)
-    |> Enum.map(&char_in_three_rucksacks/1)
+    |> get_chars_in_three_rucksacks()
     |> to_priorites()
     |> Enum.sum()
   end
@@ -70,13 +70,17 @@ defmodule Advent2022.Day3 do
     |> hd
   end
 
+  defp get_chars_in_three_rucksacks(strings) when is_list(strings) do
+    Enum.map(strings, &char_in_three_rucksacks/1)
+  end
+
   defp char_in_three_rucksacks([str1, str2, str3]) do
     set1 = str1 |> String.graphemes() |> MapSet.new()
     set2 = str2 |> String.graphemes() |> MapSet.new()
     set3 = str3 |> String.graphemes() |> MapSet.new()
-    inter = MapSet.intersection(set1, set2)
 
-    MapSet.intersection(inter, set3)
+    MapSet.intersection(set1, set2)
+    |> MapSet.intersection(set3)
     |> MapSet.to_list()
     |> hd
   end
