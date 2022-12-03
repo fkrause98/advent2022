@@ -1,0 +1,16 @@
+[package]
+name = "advent_rust"
+version = "0.1.0"
+authors = []
+edition = "2018"
+
+[lib]
+name = "advent_rust"
+path = "src/lib.rs"
+crate-type = ["cdylib"]
+
+[dependencies]
+rustler = "0.26.0"
+strum = "0.24"
+strum_macros = "0.24"
+itertools = "0.10.5"
