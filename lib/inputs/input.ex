@@ -19,10 +19,23 @@ defmodule Advent2022.Input do
     {:ok, file} = File.read(path)
     day2_parse(file)
   end
+
   def get(:day2) do
     path = Path.expand(@advent_inputs <> "/day2.txt")
     {:ok, file} = File.read(path)
     day2_parse(file)
+  end
+
+  def get(:day3, :test) do
+    path = Path.expand(@advent_inputs <> "/day3_test.txt")
+    {:ok, file} = File.read(path)
+    day3_parse(file)
+  end
+
+  def get(:day3) do
+    path = Path.expand(@advent_inputs <> "/day3.txt")
+    {:ok, file} = File.read(path)
+    day3_parse(file)
   end
 
   defp day1_parse(file_content) do
@@ -36,6 +49,12 @@ defmodule Advent2022.Input do
     file_content
     |> String.trim()
     |> String.split("\n")
-    |> Enum.flat_map(&(String.split(&1, " ")))
+    |> Enum.flat_map(&String.split(&1, " "))
+  end
+
+  defp day3_parse(file_content) do
+    file_content
+    |> String.trim()
+    |> String.split("\n")
   end
 end

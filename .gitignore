@@ -24,3 +24,5 @@ advent2022-*.tar
 
 # Temporary files, for example, from tests.
 /tmp/
+
+/priv
