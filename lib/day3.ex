@@ -25,7 +25,7 @@ defmodule Advent2022.Day3 do
   def solve_part_2 do
     Advent2022.Input.get(:day3)
     |> Enum.chunk_every(3)
-    |> Enum.map(&char_in_three_rucksacks/1)
+    |> get_chars_in_three_rucksacks()
     |> to_priorites()
     |> Enum.sum()
   end
