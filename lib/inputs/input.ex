@@ -43,10 +43,27 @@ defmodule Advent2022.Input do
     {:ok, file} = File.read(path)
     day4_parse(file)
   end
+
   def get(:day4) do
     path = Path.expand(@advent_inputs <> "/day4.txt")
     {:ok, file} = File.read(path)
     day4_parse(file)
+  end
+
+  def get(:day6, :test) do
+    [
+      "mjqjpqmgbljsphdztnvjfqwrcgsmlb",
+      "bvwbjplbgvbhsrlpgdmjqwftvncz",
+      "nppdvjthqldpwncqszvftbrmjlhg",
+      "nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg",
+      "zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw"
+    ]
+  end
+
+  def get(:day6) do
+    path = Path.expand(@advent_inputs <> "/day6.txt")
+    {:ok, file} = File.read(path)
+    file |> String.split("\n") |> hd
   end
 
   defp day1_parse(file_content) do
@@ -78,6 +95,7 @@ defmodule Advent2022.Input do
       [range_from_str(str1), range_from_str(str2)]
     end)
   end
+
   defp range_from_str(str) do
     [x, y] = String.split(str, "-")
     do_parse(x)..do_parse(y)
