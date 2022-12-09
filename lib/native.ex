@@ -3,4 +3,5 @@ defmodule Advent2022.Native do
   def advent_game(input) when is_list(input), do: :erlang.nif_error(:nif_not_loaded)
   def advent_game_part_2(input) when is_list(input), do: :erlang.nif_error(:nif_not_loaded)
   def advent_forest(input) when is_list(input), do: :erlang.nif_error(:nif_not_loaded)
+  def advent_forest_part_2(input) when is_list(input), do: :erlang.nif_error(:nif_not_loaded)
 end
