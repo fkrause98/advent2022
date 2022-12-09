@@ -95,7 +95,7 @@ fn scan_below((x, y): (usize, usize), forest: &DMatrix<usize>) -> usize {
 fn scan_left((x, y): (usize, usize), forest: &DMatrix<usize>) -> usize {
     let val = forest[(x, y)];
     let mut visibility = 0;
-    let mut i = (y as isize - 1);
+    let mut i = y as isize - 1;
     while i >= 0 && forest[(x, i as usize)] < val {
         visibility += 1;
         i -= 1;
@@ -109,7 +109,7 @@ fn scan_left((x, y): (usize, usize), forest: &DMatrix<usize>) -> usize {
 fn scan_right((x, y): (usize, usize), forest: &DMatrix<usize>) -> usize {
     let val = forest[(x, y)];
     let mut visibility = 0;
-    let mut i = (y as isize + 1);
+    let mut i = y as isize + 1;
     while i < forest.ncols().try_into().unwrap() && forest[(x, i as usize)] < val {
         visibility += 1;
         i += 1;
