@@ -90,6 +90,11 @@ defmodule Advent2022.Input do
     day8_parse(file)
   end
 
+  def get(:day10) do
+    path = Path.expand(@advent_inputs <> "/day10.txt")
+    {:ok, file} = File.read(path)
+  end
+
   defp day8_parse(file_content) do
     file_content
     |> String.trim()

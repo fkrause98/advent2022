@@ -124,7 +124,7 @@ fn get_scenic_score(pair: (usize, usize), forest: &DMatrix<usize>) -> usize {
     let below = scan_below(pair, forest);
     let left = scan_left(pair, forest);
     let right = scan_right(pair, forest);
-    return top*below*left*right;
+    return top * below * left * right;
 }
 
 #[cfg(test)]
@@ -136,7 +136,6 @@ mod test {
             3, 0, 3, 7, 3, 2, 5, 5, 1, 2, 6, 5, 3, 3, 2, 3, 3, 5, 4, 9, 3, 5, 3, 9, 0,
         ];
         let matrix = DMatrix::from_vec(5, 5, vec).transpose();
-        println!("{}", matrix);
         assert_eq!(scan_top((1, 2), &matrix), 1);
         assert_eq!(scan_top((2, 3), &matrix), 2);
         assert_eq!(scan_top((3, 2), &matrix), 2);
@@ -167,7 +166,6 @@ mod test {
             3, 0, 3, 7, 3, 2, 5, 5, 1, 2, 6, 5, 3, 3, 2, 3, 3, 5, 4, 9, 3, 5, 3, 9, 0,
         ];
         let matrix = DMatrix::from_vec(5, 5, vec).transpose();
-        println!("{}", matrix);
         assert_eq!(scan_right((1, 2), &matrix), 2);
         assert_eq!(scan_right((2, 3), &matrix), 1);
         assert_eq!(scan_right((3, 2), &matrix), 2);
@@ -178,10 +176,8 @@ mod test {
             3, 0, 3, 7, 3, 2, 5, 5, 1, 2, 6, 5, 3, 3, 2, 3, 3, 5, 4, 9, 3, 5, 3, 9, 0,
         ];
         let matrix = DMatrix::from_vec(5, 5, vec).transpose();
-        println!("{}", matrix);
         assert_eq!(get_scenic_score((1, 2), &matrix), 4);
         assert_eq!(get_scenic_score((2, 3), &matrix), 2);
         assert_eq!(get_scenic_score((3, 2), &matrix), 8);
     }
-
 }
