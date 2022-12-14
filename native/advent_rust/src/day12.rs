@@ -28,7 +28,7 @@ fn graph_from_input(input: String) -> (start, end, Graph<char>) {
 fn get_instance(kind: Instance) -> String {
     match kind {
         Test => get_file("day12_test.txt"),
-        _ => panic!("WTF???"),
+        _ => panic!(""),
     }
 }
 fn solve_part_1(kind: Instance) -> usize {
