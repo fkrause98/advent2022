@@ -1,8 +1,9 @@
 pub mod day10;
+pub mod day12;
 pub mod day2;
 pub mod day8;
 pub mod instruction;
-
+pub mod utils;
 rustler::init!(
     "Elixir.Advent2022.Native",
     [
