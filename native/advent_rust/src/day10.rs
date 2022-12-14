@@ -7,15 +7,13 @@ fn execute(mut commands: VecDeque<Instruction>, cycles: u64) -> i64 {
     let mut reg_x = 1;
     while i < cycles {
         let next = commands.pop_front().unwrap();
+        i+=1;
         match next {
-            Noop => i += 1,
-            Addx(to_add) => {
-                i += 1;
-                if i < cycles {
+            Addx(to_add) if i < cycles => {
                     reg_x += to_add;
                     i += 1;
-                }
             }
+            _ => {}
         }
     }
     return reg_x;
