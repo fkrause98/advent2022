@@ -36,10 +36,10 @@ fn solve_part_1(kind: Instance) -> usize {
     let (start, end, graph) = graph_from_input(input);
     let path_from_S_to_E = bfs(
         &start,
-        |&(x, y)|
+        |&point|
             graph
-                .neighbours((x, y), false)
-                .filter(|(i, j)| climbable(&graph[(x, y)], &graph[(*i, *j)]))
+                .neighbours(point, false)
+                .filter(|&neighbour| climbable(&graph[point], &graph[neighbour]))
         ,
         |&p| p == end,
     ).unwrap();
