@@ -56,23 +56,27 @@ fn solve_part_1(kind: Instance) -> usize {
 fn solve_part_2(kind: Instance) -> usize {
     let input = get_instance(kind);
     let (_, end, ref graph) = graph_from_input(input);
-    let iter = graph.keys();
+    let mut iter = graph.keys();
     let mut shortest_path = std::usize::MAX;
-    while let Some(starting_point) = iter.next() {
-
+    while let Some(starting_point) = iter.find(|&x| graph[x] == 'a') {
+        let path_from_a_to_e = bfs(
+            &starting_point,
+            |&point| {
+                graph
+                    .neighbours(point, false)
+                    .filter(move |&neighbour| climbable(&graph[point], &graph[neighbour]))
+                    .collect::<Vec<_>>()
+            },
+            |&p| p == end,
+        );
+        match path_from_a_to_e {
+            None => {}
+            Some(path) => {
+                shortest_path = std::cmp::min(shortest_path, path.len() - 1);
+            }
+        }
     }
-    // let path_from_s_to_e = bfs(
-    //     &start,
-    //     |&point| {
-    //         graph
-    //             .neighbours(point, false)
-    //             .filter(move |&neighbour| climbable(&graph[point], &graph[neighbour]))
-    //             .collect::<Vec<_>>()
-    //     },
-    //     |&p| p == end,
-    // )
-    // .unwrap();
-    return path_from_s_to_e.len() - 1;
+    return shortest_path;
 }
 
 #[cfg(test)]
@@ -87,5 +91,15 @@ mod test {
     fn solve_full_instance_1() -> () {
         let answer = solve_part_1(Instance::Full);
         assert_eq!(answer, 456);
+    }
+    #[test]
+    fn solve_test_instance_2() -> () {
+        let answer = solve_part_2(Instance::Test);
+        assert_eq!(answer, 29);
+    }
+    #[test]
+    fn solve_test_instance() -> () {
+        let answer = solve_part_2(Instance::Full);
+        assert_eq!(answer, 454);
     }
 }
